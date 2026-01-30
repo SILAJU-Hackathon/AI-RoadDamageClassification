@@ -1,0 +1,29 @@
+[project]
+name = "dsml-cuda-pipeline"
+version = "0.1.0"
+dependencies = [
+    "torch",
+    "torchvision",
+    "torchaudio",
+    "numpy>=2.0.0",
+    "pandas",
+    "scikit-learn",
+    "matplotlib",
+    "seaborn",
+    "tqdm",
+    "opencv-python"
+]
+
+[tool.setuptools]
+package-dir = {"" = "."}
+
+# CRITICAL: This forces uv to look at your custom index for these specific packages
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
+torchvision = { index = "pytorch-cu128" }
+torchaudio = { index = "pytorch-cu128" }
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true  # This ensures ONLY pinned packages (above) use this index
